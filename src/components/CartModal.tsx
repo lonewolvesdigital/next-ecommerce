@@ -6,6 +6,10 @@ import { media as wixMedia } from "@wix/sdk";
 import { useWixClient } from "@/hooks/useWixClient";
 import { currentCart } from "@wix/ecom";
 
+// Use the correct type from Wix ecom for line items
+// If currentCart.LineItem is the correct type, use it:
+type CartLineItem = currentCart.LineItem;
+
 const CartModal = () => {
   // TEMPORARY
   // const cartItems = true;
@@ -37,6 +41,25 @@ const CartModal = () => {
     }
   };
 
+  // Calculate subtotal from lineItems
+  const subtotal = Array.isArray(cart?.lineItems)
+    ? cart.lineItems.reduce(
+        (sum: number, item: CartLineItem) => {
+          const price = Number(item.price?.amount) || 0;
+          const qty = Number(item.quantity) || 1;
+          return sum + price * qty;
+        },
+        0
+      )
+    : 0;
+
+  // Calculate shipping
+  let shipping = 0;
+  if (subtotal < 799.99 && subtotal > 0) {
+    shipping = 150;
+  }
+  const total = subtotal + shipping;
+
   return (
     <div className="w-max absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white top-12 right-0 flex flex-col gap-6 z-20">
       {!cart.lineItems ? (
@@ -47,7 +70,7 @@ const CartModal = () => {
           {/* LIST */}
           <div className="flex flex-col gap-8">
             {/* ITEM */}
-            {cart.lineItems.map((item) => (
+            {cart.lineItems.map((item: CartLineItem) => (
               <div className="flex gap-4" key={item._id}>
                 {item.image && (
                   <Image
@@ -103,11 +126,19 @@ const CartModal = () => {
           {/* BOTTOM */}
           <div className="">
             <div className="flex items-center justify-between font-semibold">
-              <span className="">Subtotal</span>
-              <span className="">${cart.subtotal.amount}</span>
+              <span>Subtotal</span>
+              <span>R{subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex items-center justify-between font-semibold mt-2">
+              <span>Shipping</span>
+              <span>{shipping === 0 && subtotal > 0 ? "Free" : `R${shipping}`}</span>
+            </div>
+            <div className="flex items-center justify-between font-semibold mt-2">
+              <span>Total</span>
+              <span>R{total.toFixed(2)}</span>
             </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
-              Shipping and taxes calculated at checkout.
+              Shipping is free for orders over R799.99. Shipping and taxes calculated at checkout.
             </p>
             <div className="flex justify-between text-sm">
               <button className="rounded-md py-3 px-4 ring-1 ring-gray-300">

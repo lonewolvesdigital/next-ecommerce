@@ -18,10 +18,17 @@ const ProductList = async ({
 }) => {
   const wixClient = await wixClientServer();
 
-  const productQuery = wixClient.products
-    .queryProducts()
-    .startsWith("name", searchParams?.name || "")
-    .eq("collectionIds", categoryId)
+  let productQuery = wixClient.products.queryProducts();
+
+  if (searchParams?.name && searchParams.name.trim() !== "") {
+    productQuery = productQuery.startsWith("name", searchParams.name);
+  }
+
+  if (categoryId && categoryId.trim() !== "") {
+    productQuery = productQuery.eq("collectionIds", categoryId);
+  }
+
+  productQuery = productQuery
     .hasSome(
       "productType",
       searchParams?.type ? [searchParams.type] : ["physical", "digital"]
@@ -34,7 +41,6 @@ const ProductList = async ({
         ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
         : 0
     );
-  // .find();
 
   if (searchParams?.sort) {
     const [sortType, sortBy] = searchParams.sort.split(" ");
@@ -91,7 +97,7 @@ const ProductList = async ({
               }}
             ></div>
           )}
-          <button className="rounded-2xl ring-1 ring-lama text-lama w-max py-2 px-4 text-xs hover:bg-lama hover:text-white">
+          <button className="add-to-cart rounded-2xl w-max py-2 px-4 text-xs transition-colors duration-200">
             Add to Cart
           </button>
         </Link>

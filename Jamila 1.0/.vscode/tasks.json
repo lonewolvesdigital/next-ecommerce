@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Apply Brand Color Overlay - Offer Banners",
+			"type": "shell",
+			"command": "convert ./assets/images/offer-banner-*.jpg -colorspace RGB ( +clone -fill \"#00B2B2\" -colorize 15% ) -compose screen -composite ./assets/images/offer-banner-%.jpg",
+			"group": "build"
+		}
+	]
+}

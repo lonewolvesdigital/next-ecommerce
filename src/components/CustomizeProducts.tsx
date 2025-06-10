@@ -87,7 +87,7 @@ const CustomizeProducts = ({
                 </li>
               ) : (
                 <li
-                  className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm"
+                  className="ring-1 ring-primary text-primary rounded-md py-1 px-4 text-sm cursor-pointer"
                   style={{
                     cursor: disabled ? "not-allowed" : "pointer",
                     backgroundColor: selected
@@ -97,7 +97,6 @@ const CustomizeProducts = ({
                       : "white",
                     color: selected || disabled ? "white" : "#f35c7a",
                     boxShadow: disabled ? "none" : "",
-                    
                   }}
                   key={choice.description}
                   onClick={clickHandler}

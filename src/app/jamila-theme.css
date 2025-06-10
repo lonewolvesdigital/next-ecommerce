@@ -1,0 +1,72 @@
+/* Jamila 2.0 CSS Variables and Utility Classes */
+:root {
+  --primary: #00B2B2;
+  --gold: #C5A572;
+  --hoockers-green: #5B7C6A;
+  --pale-spring-bud: #E6F5C9;
+  --spanish-gray: #9C9C9C;
+  --light-gray: #CCCCCC;
+  --cultured-1: #F7F7F7;
+  --cultured-2: #F2F2ED;
+  --gray-web: #7D7D7D;
+  --white: #FFFFFF;
+  --black: #000000;
+  --section-padding: 35px;
+  --shadow-1: 0 8px 16px rgba(0,0,0,0.15);
+  --shadow-2: 0 4px 10px rgba(0,0,0,0.05);
+  --radius-3: 3px;
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease;
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+  --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+  --ff-urbanist: 'Urbanist', sans-serif;
+  --ff-playfair: 'Playfair Display', serif;
+}
+
+body {
+  font-family: var(--ff-urbanist, 'Urbanist', sans-serif);
+  background: var(--cultured-1);
+  color: var(--hoockers-green);
+}
+
+h1, h2, h3, h4, h5, h6, .font-playfair {
+  font-family: var(--ff-playfair, 'Playfair Display', serif);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-1);
+  transition: background var(--transition-1);
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.badge {
+  background: var(--gold);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 0.25em 0.75em;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.shadow-1 {
+  box-shadow: var(--shadow-1);
+}
+
+.shadow-2 {
+  box-shadow: var(--shadow-2);
+}
+
+.rounded-3 {
+  border-radius: var(--radius-3);
+}

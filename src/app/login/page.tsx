@@ -2,9 +2,9 @@
 
 import { useWixClient } from "@/hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { useState } from "react";
+import { useRouter } from "../../../node_modules/next/navigation";
+import Cookies from "../../../node_modules/@types/js-cookie";
+import { useState } from "../../../node_modules/@types/react";
 
 enum MODE {
   LOGIN = "LOGIN",

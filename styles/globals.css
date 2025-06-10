@@ -1,0 +1,17 @@
+button,
+.btn,
+.btn-primary,
+button[type="button"],
+button[type="submit"] {
+  background-color: gold !important;
+  border-color: gold !important;
+  color: #222 !important;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
+  background-color: gold !important;
+  border-color: gold !important;
+  color: #222 !important;
+}
