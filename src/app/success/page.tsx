@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "../../../node_modules/next/navigation";
-import { useEffect } from "../../../node_modules/@types/react";
+import { useEffect } from "react";
 import Confetti from "react-confetti";
 
 const SuccessPage = () => {
