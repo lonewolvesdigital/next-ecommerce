@@ -3,6 +3,8 @@ import { useRouter, useSearchParams } from "../../../node_modules/next/navigatio
 import { useEffect, Suspense } from "react";
 import Confetti from "react-confetti";
 
+export const dynamic = "force-dynamic";
+
 const SuccessPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
