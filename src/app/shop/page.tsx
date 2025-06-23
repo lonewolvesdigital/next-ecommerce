@@ -2,7 +2,7 @@ import ProductList from "@/components/ProductList";
 import Skeleton from "@/components/Skeleton";
 import Filter from "@/components/Filter";
 import SignupModal from "@/components/SignupModal";
-import { Suspense } from "../../../node_modules/@types/react";
+import { Suspense } from "react";
 
 const Shop = async ({ searchParams }: { searchParams?: any }) => {
   return (

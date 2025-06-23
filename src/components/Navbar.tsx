@@ -7,10 +7,8 @@ const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false });
 
 const navLinks = [
 	{ href: "/", label: "Home" },
-	{ href: "/collection", label: "Collection" },
+	{ href: "/events", label: "Events" },
 	{ href: "/shop", label: "Shop" },
-	{ href: "/offer", label: "Offer" },
-	{ href: "/blog", label: "Blog" },
 ];
 
 const Navbar = ({
