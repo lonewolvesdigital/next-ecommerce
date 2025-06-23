@@ -5,6 +5,8 @@ import { members } from "@wix/members";
 import Link from "../../../node_modules/next/link";
 import { format } from "timeago.js";
 
+export const dynamic = "force-dynamic";
+
 const ProfilePage = async () => {
   const wixClient = await wixClientServer();
 
@@ -13,12 +15,19 @@ const ProfilePage = async () => {
   });
 
   if (!user.member?.contactId) {
+    // Don't try to fetch orders if not logged in
     return <div className="">Not logged in!</div>;
   }
 
-  const orderRes = await wixClient.orders.searchOrders({
-    filter: { "buyerInfo.contactId": { $eq: user.member?.contactId } },
-  });
+  let orderRes: { orders: any[] } = { orders: [] };
+  try {
+    const res = await wixClient.orders.searchOrders({
+      filter: { "buyerInfo.contactId": { $eq: user.member?.contactId } },
+    });
+    orderRes.orders = res.orders || [];
+  } catch (e) {
+    orderRes = { orders: [] };
+  }
 
   return (
     <div className="flex flex-col md:flex-row gap-24 md:h-[calc(100vh-180px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
