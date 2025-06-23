@@ -14,7 +14,9 @@ const Filter = ({ searchParams }: FilterProps) => {
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
     const { name, value } = e.target;
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(
+      typeof searchParams === "string" ? searchParams : ""
+    );
     params.set(name, value);
     replace(`${pathname}?${params.toString()}`);
   };

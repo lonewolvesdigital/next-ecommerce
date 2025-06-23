@@ -16,7 +16,9 @@ const Pagination = ({
   const { replace } = useRouter();
 
   const createPageUrl = (pageNumber: number) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(
+      typeof searchParams === "string" ? searchParams : ""
+    );
     params.set("page", pageNumber.toString());
     replace(`${pathname}?${params.toString()}`);
   };
