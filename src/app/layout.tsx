@@ -35,11 +35,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/* Ionicons CDN */}
-        <script
+        {/* <script
           type="module"
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
         ></script>
-        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> */}
         {/* Favicon */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
