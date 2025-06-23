@@ -17,9 +17,7 @@ const ProfilePage = async () => {
   }
 
   const orderRes = await wixClient.orders.searchOrders({
-    search: {
-      filter: { "buyerInfo.contactId": { $eq: user.member?.contactId } },
-    },
+    filter: { "buyerInfo.contactId": { $eq: user.member?.contactId } },
   });
 
   return (
@@ -73,22 +71,26 @@ const ProfilePage = async () => {
       <div className="w-full md:w-1/2">
         <h1 className="text-2xl">Orders</h1>
         <div className="mt-12 flex flex-col">
-          {orderRes.orders.map((order) => (
-            <Link
-              href={`/orders/${order._id}`}
-              key={order._id}
-              className="flex justify-between px-2 py-6 rounded-md hover:bg-green-50 even:bg-slate-100"
-            >
-              <span className="w-1/4">{order._id?.substring(0, 10)}...</span>
-              <span className="w-1/4">
-                ${order.priceSummary?.subtotal?.amount}
-              </span>
-              {order._createdDate && (
-                <span className="w-1/4">{format(order._createdDate)}</span>
-              )}
-              <span className="w-1/4">{order.status}</span>
-            </Link>
-          ))}
+          {orderRes.orders && orderRes.orders.length > 0 ? (
+            orderRes.orders.map((order) => (
+              <Link
+                href={`/orders/${order._id}`}
+                key={order._id}
+                className="flex justify-between px-2 py-6 rounded-md hover:bg-green-50 even:bg-slate-100"
+              >
+                <span className="w-1/4">{order._id?.substring(0, 10)}...</span>
+                <span className="w-1/4">
+                  ${order.priceSummary?.subtotal?.amount}
+                </span>
+                {order._createdDate && (
+                  <span className="w-1/4">{format(order._createdDate)}</span>
+                )}
+                <span className="w-1/4">{order.status}</span>
+              </Link>
+            ))
+          ) : (
+            <span>No orders found.</span>
+          )}
         </div>
       </div>
     </div>
